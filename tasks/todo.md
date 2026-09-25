@@ -7,13 +7,13 @@ Updated 25 Sep 2026. Owner tags: [Moz] = decisions or access only you have · [M
 - [x] **[agent] Toolchain tested in a scratch copy**: `npm install` works, `npm run build` fails on Node 22 (`lessons.md`).
 - [x] **[agent] Live hosting checked**: nginx on AWS, not GitHub Pages (`lessons.md`).
 - [x] **[agent] `CLAUDE.md`, `tasks/todo.md`, `lessons.md`, `decisions.md`, `debt.md` written** on branch `claude-code-setup`.
-- [ ] **[Moz] Review and merge `claude-code-setup`.**
+- [x] **[Moz] Review and merge `claude-code-setup`** (merged to `master` as `946110c`, branch deleted).
 
 ## 1. Before any rebuild work
 
 - [x] **[agent] Found the deploy target**: `miab-new:/home/user-data/www/default/` on the Mail-in-a-Box, confirmed by sha256 match with the live page (`lessons.md`, `CLAUDE.md` rule 2).
 - [ ] **[Moz+agent] Prove the upload command** on the first deploy (rsync with sudo on the remote end and the right ownership), then add a `deploy` npm script. Take a copy of the current `www/default/` into the scratchpad first as the rollback.
-- [ ] **[Moz] Decide on GitHub Pages**: disable it on the repo, or move the live site to it (would need DNS changes and a Pages build of the new page).
+- [x] **[agent] GitHub Pages disabled** (25 Sep 2026, `gh api -X DELETE .../pages`; `has_pages` now `false`).
 - [ ] **[Moz] Close or delete the two dependabot branches** (they target the toolchain being removed).
 
 ## 2. The new single page (Moz Morris Ltd)
