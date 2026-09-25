@@ -26,7 +26,9 @@ app/index.html          the page: HTML, inline CSS and JS, JSON-LD
 app/404.html            not-found page in the same style
 app/fonts/              Newsreader and IBM Plex Sans, self-hosted woff2, trimmed to the weights used
 app/CNAME, robots.txt, favicon.ico
+app/og.png              1200x630 share image
 docs/design-brief.md    the approved design brief
+docs/og-image.html      source for og.png, with the command to regenerate it
 ```
 
 The page plays a one-time intro (question types in, answer streams). The finished state is in the HTML, so it reads correctly with JS off, under `prefers-reduced-motion`, and to crawlers. `localStorage` key `mm-seen` skips the intro on return visits; clear it to see the intro again.
