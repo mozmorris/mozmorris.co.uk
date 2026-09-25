@@ -1,6 +1,6 @@
 # mozmorris.co.uk: project instructions
 
-This repo is the source for **mozmorris.co.uk**, the single-page site for **Moz Morris Ltd** (company 09049340, incorporated 21 May 2014, SIC 62012 business and domestic software development). The live page is still the 2014 Yeoman/gulp build last deployed 19 Oct 2020. Its replacement (the question-and-answer page in `docs/design-brief.md`) is plain files in `app/` with no build step (D3).
+This repo is the source for **mozmorris.co.uk**, the single-page site for **Moz Morris Ltd** (company 09049340, incorporated 21 May 2014, SIC 62012 business and domestic software development). The live page is the question-and-answer page in `docs/design-brief.md`, deployed 25 Sep 2026: plain files in `app/` with no build step (D6).
 
 `tasks/lessons.md` is THIS project's verified lesson file (read at session start; append when a lesson is earned). `tasks/todo.md` tracks next steps. `tasks/decisions.md` records choices and why. `tasks/debt.md` holds known, accepted debt.
 
@@ -26,6 +26,7 @@ app/index.html          the page: HTML, inline CSS and JS, JSON-LD
 app/404.html            not-found page in the same style
 app/fonts/              Newsreader and IBM Plex Sans, self-hosted woff2, trimmed to the weights used
 app/CNAME, robots.txt, favicon.ico
+deploy.sh               deploys app/ to the live web root (dry run unless --live)
 app/og.png              1200x630 share image
 docs/design-brief.md    the approved design brief
 docs/og-image.html      source for og.png, with the command to regenerate it
@@ -41,10 +42,12 @@ There are no automated tests. Check a change by serving `app/` and viewing it in
 
 ```bash
 python3 -m http.server --directory app 8000   # preview at http://localhost:8000
+./deploy.sh                                   # dry run: what would change on the live site
+./deploy.sh --live                            # deploy app/ to the live site
 
 # Inspect the live web root (read-only, safe)
 ssh miab-new 'ls -la /home/user-data/www/default/'
 curl -sI https://mozmorris.co.uk | grep -i last-modified
 ```
 
-The upload command is not settled: the web root is owned by `user-data`, and the SSH user is `ubuntu`, so a plain `rsync` will likely need `--rsync-path="sudo -n rsync"` (passwordless sudo works for `ubuntu`, verified 25 Sep 2026) and `--chown=user-data:user-data`. Prove it on the first deploy and record it here and in `tasks/lessons.md`.
+`./deploy.sh` dry-runs the deploy (itemised changes, nothing written); `./deploy.sh --live` applies it. It refuses to run with uncommitted changes in `app/`. It streams `app/` as a tarball to a temp dir on `miab-new`, then runs the server's GNU rsync under `sudo -n` with `--delete`, `--chmod=D755,F644` and `--chown=user-data:user-data`. Always dry-run first and read the list, because `--delete` removes anything in the web root that is not in `app/`. First used 25 Sep 2026.

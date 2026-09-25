@@ -22,3 +22,10 @@ Every entry here was observed in this repo unless marked otherwise. Short impera
 - **The Chrome automation tab reports `document.hidden === true` (25 Sep 2026).** Its timers were throttled to about one tick per second, so the 4-second intro took over a minute. That exposed a real case (a visitor opening the site in a background tab), and the page now holds the intro until `visibilitychange` says the tab is visible. When checking the intro automatically, click Replay (it plays regardless) and poll state with JS rather than trusting screenshots taken on a timer.
 - **`resize_window` did not change the viewport (25 Sep 2026)**; `innerWidth` stayed 1728. To check phone width, load the page in a same-origin 390px `<iframe>` and read `scrollWidth` from its document.
 - **Google Fonts served full variable ranges even when asked for 400 to 500 (25 Sep 2026).** Newsreader came down at 132 KB (wght 200 to 800, opsz 6 to 72). `fonttools varLib.instancer` plus `pyftsubset` to Latin brought both fonts to 67 KB total.
+
+## First deploy (25 Sep 2026)
+
+- **macOS `rsync` is openrsync and rejects `--chmod` (and lacks `--chown`).** `rsync: --chmod=D755,F644: invalid argument`. Streaming a tarball over SSH to a `mktemp -d` dir on the server and running the server's GNU rsync (`/usr/bin/rsync`) under `sudo -n` works, and is what `deploy.sh` does.
+- **Back up before `--delete`.** `ssh miab-new 'sudo -n tar -C /home/user-data/www -czf - default' > <scratchpad>/rollback/...tgz` took the whole 2020 web root (92 KB) in one command. Roll back by piping it into `sudo tar -xzf - -C /home/user-data/www` after clearing `default/`.
+- **The deploy changed file groups from `staff` to `user-data`** (the 2020 files carried the Mac's group). nginx still serves them; `--chown=user-data:user-data` keeps them consistent from now on.
+- **Proof of a deploy:** `sha256sum` on the server, `curl -s https://mozmorris.co.uk/ | shasum -a 256` locally, and the `last-modified` header. All three matched on 25 Sep 2026 (`a642ffa6...`).
