@@ -18,8 +18,9 @@ Updated 25 Sep 2026. Owner tags: [Moz] = decisions or access only you have · [M
 
 ## 2. The new single page (Moz Morris Ltd)
 
-- [ ] **[Moz] Content brief**: what the business does and for whom, services, contact route, and which Companies House facts appear on the page (name and number are usual for a Ltd site; registered office is optional). Source: https://find-and-update.company-information.service.gov.uk/company/09049340
+- [x] **[Moz] Content brief** (done 25 Sep 2026: `docs/design-brief.md`, prototype approved, D4 and D5): what the business does and for whom, services, contact route, and which Companies House facts appear on the page (name, number, place of registration and registered office are required on a company website; see `docs/design-brief.md` section 6). Draft brief: `docs/design-brief.md`. Source: https://find-and-update.company-information.service.gov.uk/company/09049340
 - [ ] **[Moz+agent] Settle D3** in `decisions.md`: no build vs a dart-sass npm script.
-- [ ] **[agent] Build the page** on a branch: semantic HTML, responsive, filled-in meta description, no jQuery, Bootstrap or Modernizr. Keep `CNAME`, `robots.txt`, `404.html` and `favicon.ico` (or replace them on purpose).
+- [ ] **[Moz+agent] Create `work@mozmorris.co.uk`** on the Mail-in-a-Box (mailbox or alias) and send a test message before the page goes live.
+- [ ] **[agent] Build the page** on a branch, from `docs/design-brief.md` and the approved prototype: semantic HTML, responsive, filled-in meta description, no jQuery, Bootstrap or Modernizr. Keep `CNAME`, `robots.txt`, `404.html` and `favicon.ico` (or replace them on purpose).
 - [ ] **[agent] Remove the old toolchain**: gulp, bower, Ruby Sass config, `test/`, `app/.htaccess` (Apache config; removed from the live web root 25 Sep 2026 and must not come back), `.bowerrc`, `.yo-rc.json`, `.jshintrc`, and the `package-lock.json` they need. Update `CLAUDE.md` Structure and Commands, and clear the items from `debt.md`.
 - [ ] **[Moz+agent] Verify**: view at phone and desktop widths, check HTML validity, then deploy to `miab-new:/home/user-data/www/default/` and confirm with `curl -sI` that `last-modified` has moved past 19 Oct 2020.

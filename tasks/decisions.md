@@ -13,3 +13,11 @@ Moz: the replacement is one page that reflects the business (Moz Morris Ltd, 090
 ## D3. Replace the toolchain rather than revive it (25 Sep 2026, PROPOSED)
 
 Proposed direction for the rebuild: drop gulp 3, bower, Ruby Sass, uncss and the Yeoman test scaffold; use plain HTML plus either hand-written CSS (no build) or dart-sass run from an npm script. **Why:** gulp 3 cannot load on Node 22 (`lessons.md`), Ruby Sass is end-of-life, bower is deprecated, and a single page needs none of them. Reviving the old pipeline means pinning a Node version from 2019. **Open:** no build at all vs a dart-sass script; decide when the page design is known.
+
+## D4. The page is a question and its answer (25 Sep 2026)
+
+Moz confirmed the concept in `docs/design-brief.md` section 4: the page presents "Who is Moz Morris Ltd?" and a sourced, serif-set answer, borrowing the conversational shape and warm dark style of a chat interface but none of Claude's or Anthropic's marks, names, interface or fonts. **Why:** the question is the one people and AI assistants are already asking (and answering wrongly, e.g. ZoomInfo's "Construction"), so the page settles it directly; the brand exclusion avoids trademark trouble and visitors mistaking the page for a Claude product.
+
+## D5. The visitor appears to ask the question (25 Sep 2026)
+
+Refines D4. Moz asked for the page to feel as if the visitor is running an assistant (the reason for the three Claude screenshots). The page plays a one-time sequence: day-aware greeting, the question types itself into a composer and sends, a status line, the answer streams in, then follow-up questions as buttons with pre-written answers. Prototype approved by Moz: https://claude.ai/artifact/UqHKk1wQ8fvTLjLTMUKb8H (details in `docs/design-brief.md` section 5). **Why:** the feeling comes from the choreography, so it needs none of Claude's marks or interface; a page that passed as a real assistant would present the company's own copy as an independent AI's verdict. No free-text input, because nothing would answer it.
