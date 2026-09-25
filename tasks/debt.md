@@ -8,5 +8,4 @@ Opened 25 Sep 2026. Items here are known, accepted for now, and dated; move one 
 - **Stale page content.** Copy dates from 2014 to 2020 ("Web Developer", project links) and does not describe Moz Morris Ltd. `<meta name="description">` is empty.
 - **36 Dependabot alerts on `master`** (2 critical, 16 high, 15 moderate, 3 low, as of 25 Sep 2026), all in the build toolchain, none in the served static files. Dependabot may open new PRs until the toolchain is removed; close them the same way.
 - **No scripted deploy.** The site lives in `/home/user-data/www/default/` on the Mail-in-a-Box (`miab-new`), last updated 19 Oct 2020 by a manual copy from the Mac. There is no deploy script, and the exact upload command (sudo, ownership) is unproven.
-- **Leftover in the live web root.** The `.DS_Store` was deleted on 25 Sep 2026 (now 404). The 29 KB Apache `.htaccess` returns 403 and does nothing, since the box runs nginx.
 - **Leftover scaffold config.** `.bowerrc`, `.yo-rc.json`, `.jshintrc`.
