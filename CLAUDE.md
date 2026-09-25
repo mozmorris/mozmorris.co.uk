@@ -50,4 +50,4 @@ ssh miab-new 'ls -la /home/user-data/www/default/'
 curl -sI https://mozmorris.co.uk | grep -i last-modified
 ```
 
-The upload command is not settled: the web root is owned by `user-data`, and the SSH user is `ubuntu`, so a plain `rsync` will likely need `--rsync-path="sudo rsync"` and `--chown=user-data:user-data`. Prove it on the first deploy and record it here and in `tasks/lessons.md`.
+The upload command is not settled: the web root is owned by `user-data`, and the SSH user is `ubuntu`, so a plain `rsync` will likely need `--rsync-path="sudo -n rsync"` (passwordless sudo works for `ubuntu`, verified 25 Sep 2026) and `--chown=user-data:user-data`. Prove it on the first deploy and record it here and in `tasks/lessons.md`.
