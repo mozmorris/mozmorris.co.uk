@@ -1,0 +1,16 @@
+# Lessons: mozmorris.co.uk (verified in THIS project)
+
+Every entry here was observed in this repo unless marked otherwise. Short imperative versions of the load-bearing ones live in `CLAUDE.md` (hard rules); this file carries the mechanism and the evidence.
+
+## Toolchain
+
+- **gulp 3 cannot run on Node 22 (25 Sep 2026).** `npm install` succeeds (1400 packages, deprecation warnings only), then `npm run build` exits 1 with `ReferenceError: primordials is not defined` from `vinyl-fs/node_modules/graceful-fs/fs.js`. It is a hard failure at load time, so no task runs. Evidence: scratch build from `git archive HEAD`, Node v22.21.1, npm 10.9.4. (Rule 1.)
+- **Nothing global the build needs is installed (25 Sep 2026).** `gulp`, `sass` (Ruby Sass, required by `gulp-ruby-sass`) and `bower` are all missing from PATH. Even with a working gulp, the styles task would fail without Ruby Sass.
+- **Test a build in a scratch copy, not the tree.** `git archive HEAD | tar -x -C <scratchpad>/build` gives a clean copy, so `node_modules` and `dist/` never touch the repo.
+
+## Deployment
+
+- **"GitHub Pages (I think)" was wrong (25 Sep 2026).** `mozmorris.co.uk` and `www.mozmorris.co.uk` resolve to 18.134.77.81, served by nginx over HTTP/2 with HSTS. The live `index.html` has `last-modified: Mon, 19 Oct 2020 13:13:26 GMT`, the same day as the last "Build" commit, and has critical CSS inlined (the output of `gulp critical`). (Rule 2.)
+- **GitHub Pages is enabled but is not the live site (25 Sep 2026).** `gh api repos/mozmorris/mozmorris.co.uk/pages` reports legacy build from `master` `/`, `cname: null`, `html_url: http://www.mozmorris.com/mozmorris.co.uk/`. That URL is on a different host (www.mozmorris.com, 156.253.147.72, nginx/1.14.2), which 301s to HTTPS. Publishing from repo root would serve source, not `dist/`, anyway.
+- **The live site is the Mail-in-a-Box web root (25 Sep 2026).** 18.134.77.81 is the Mail-in-a-Box Elastic IP (`../mailinabox/miab-migration-prompt.md`; `box.mozmorris.co.uk` and the NS glue resolve to it). `ssh miab-new 'sha256sum /home/user-data/www/default/index.html'` matched the live page exactly (`cd622ff7...`). The directory holds the 2020 `dist/` output: `index.html`, `404.html`, `CNAME`, `robots.txt`, `favicon.ico`, `.htaccess`, `fonts/`, `styles/`, plus a stray `.DS_Store`. Files are owned `user-data:staff` (a macOS group), so they were pushed from the Mac with attributes preserved, and they survived the Sep 2026 v57a to v76 migration because it synced all of `/home/user-data`. `www/earthview.co.uk/` sits alongside (13-byte placeholder, Jun 2022).
+- **Verify a deploy assumption with DNS and headers before writing it down.** `dig +short` plus `curl -sI` settled in two commands what memory had wrong.

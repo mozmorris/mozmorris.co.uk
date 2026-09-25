@@ -1,0 +1,25 @@
+# Next steps (in order): mozmorris.co.uk
+
+Updated 25 Sep 2026. Owner tags: [Moz] = decisions or access only you have · [Moz+agent] = you drive, agent verifies · [agent] = fully headless.
+
+## 0. Claude Code ready state (25 Sep 2026)
+
+- [x] **[agent] Toolchain tested in a scratch copy**: `npm install` works, `npm run build` fails on Node 22 (`lessons.md`).
+- [x] **[agent] Live hosting checked**: nginx on AWS, not GitHub Pages (`lessons.md`).
+- [x] **[agent] `CLAUDE.md`, `tasks/todo.md`, `lessons.md`, `decisions.md`, `debt.md` written** on branch `claude-code-setup`.
+- [ ] **[Moz] Review and merge `claude-code-setup`.**
+
+## 1. Before any rebuild work
+
+- [x] **[agent] Found the deploy target**: `miab-new:/home/user-data/www/default/` on the Mail-in-a-Box, confirmed by sha256 match with the live page (`lessons.md`, `CLAUDE.md` rule 2).
+- [ ] **[Moz+agent] Prove the upload command** on the first deploy (rsync with sudo on the remote end and the right ownership), then add a `deploy` npm script. Take a copy of the current `www/default/` into the scratchpad first as the rollback.
+- [ ] **[Moz] Decide on GitHub Pages**: disable it on the repo, or move the live site to it (would need DNS changes and a Pages build of the new page).
+- [ ] **[Moz] Close or delete the two dependabot branches** (they target the toolchain being removed).
+
+## 2. The new single page (Moz Morris Ltd)
+
+- [ ] **[Moz] Content brief**: what the business does and for whom, services, contact route, and which Companies House facts appear on the page (name and number are usual for a Ltd site; registered office is optional). Source: https://find-and-update.company-information.service.gov.uk/company/09049340
+- [ ] **[Moz+agent] Settle D3** in `decisions.md`: no build vs a dart-sass npm script.
+- [ ] **[agent] Build the page** on a branch: semantic HTML, responsive, filled-in meta description, no jQuery, Bootstrap or Modernizr. Keep `CNAME`, `robots.txt`, `404.html` and `favicon.ico` (or replace them on purpose).
+- [ ] **[agent] Remove the old toolchain**: gulp, bower, Ruby Sass config, `test/`, `.bowerrc`, `.yo-rc.json`, `.jshintrc`, and the `package-lock.json` they need. Update `CLAUDE.md` Structure and Commands, and clear the items from `debt.md`.
+- [ ] **[Moz+agent] Verify**: view at phone and desktop widths, check HTML validity, then deploy to `miab-new:/home/user-data/www/default/` (drop `.DS_Store` and the Apache `.htaccess`) and confirm with `curl -sI` that `last-modified` has moved past 19 Oct 2020.
