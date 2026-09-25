@@ -1,169 +1,316 @@
 <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Moz Morris - Web Developer</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moz Morris Ltd: software development, London</title>
+<meta name="description" content="Moz Morris Ltd is a London software development company, founded by Moz Morris in 2014. Company 09049340.">
+<link rel="canonical" href="https://mozmorris.co.uk/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f2efe8" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mozmorris.co.uk/">
+<meta property="og:title" content="Who is Moz Morris Ltd?">
+<meta property="og:description" content="A London software development company, founded by Moz Morris in 2014.">
+<link rel="icon" href="/favicon.ico">
+<link rel="preload" href="/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Moz Morris Ltd",
+  "legalName": "MOZ MORRIS LTD",
+  "url": "https://mozmorris.co.uk/",
+  "email": "work@mozmorris.co.uk",
+  "description": "Software development company based in London, founded by Moz Morris in May 2014.",
+  "foundingDate": "2014-05-21",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "Companies House company number",
+    "value": "09049340"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "59 Bath Street",
+    "addressLocality": "Southampton",
+    "addressRegion": "Hampshire",
+    "postalCode": "SO14 6GR",
+    "addressCountry": "GB"
+  },
+  "location": {
+    "@type": "Place",
+    "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" }
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Moz Morris",
+    "sameAs": ["https://www.linkedin.com/in/mozmorris", "https://github.com/MozMorris"]
+  },
+  "sameAs": ["https://find-and-update.company-information.service.gov.uk/company/09049340"]
+}
+</script>
+<script>
+  // Decide before first paint whether to play the intro, so the finished page never flashes first.
+  (function () {
+    var seen = false;
+    try { seen = localStorage.getItem('mm-seen') === '1'; } catch (e) {}
+    if (!seen && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('play');
+    }
+  })();
+</script>
+<style>
+@font-face{font-family:"Newsreader";src:url("/fonts/newsreader-latin.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url("/fonts/ibm-plex-sans-latin.woff2") format("woff2");font-weight:400 500;font-style:normal;font-display:swap}
+:root{
+  --bg:#f2efe8;--ink:#23211d;--muted:#6b665d;--bubble:#e4dfd4;--line:#d8d2c6;--field:#fbf9f4;--a:#875c12;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;
+  --bg:#1c1b19;--ink:#ece9e2;--muted:#a19d94;--bubble:#2a2925;--line:#34322d;--field:#242320;--a:#d9a854}}
+html,body{height:100%}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);padding-inline:16px;-webkit-text-size-adjust:100%}
+main{max-width:42rem;margin:0 auto;min-height:100%;display:flex;flex-direction:column;gap:28px;padding-block:40px 20px;box-sizing:border-box}
+.hello{display:none;font:400 clamp(2rem,6vw,2.75rem)/1.1 var(--serif);margin:0;text-align:center;text-wrap:balance}
+.thread{display:flex;flex-direction:column;gap:32px;flex:1}
+.turn{display:flex;flex-direction:column;gap:14px;scroll-margin-top:24px}
+.q{align-self:flex-end;background:var(--bubble);border-radius:16px;padding:10px 16px;max-width:85%;margin:0;font:400 15px/1.5 var(--sans)}
+.status{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;min-height:20px}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:5px;height:5px;border-radius:50%;background:var(--a);animation:pulse 1s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+.a{font:400 1.12rem/1.65 var(--serif);display:flex;flex-direction:column;gap:14px}
+.a p{margin:0}
+a{color:var(--a);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:3px}
+.chip{display:inline-block;font:500 11px/1 var(--sans);letter-spacing:.02em;text-decoration:none;
+  border:1px solid color-mix(in srgb,var(--a) 45%,transparent);border-radius:999px;padding:4px 8px;vertical-align:2px}
+.w{opacity:0;transition:opacity .25s}.w.on{opacity:1}
+.composer{display:none;position:sticky;bottom:12px;background:var(--field);border:1px solid var(--line);border-radius:18px;padding:14px 16px;
+  flex-direction:column;gap:10px;box-shadow:0 6px 24px color-mix(in srgb,var(--ink) 8%,transparent)}
+.js .composer{display:flex}
+.field{display:none;min-height:24px;font-size:16px}
+.field .ph{color:var(--muted)}
+.caret{display:inline-block;width:1.5px;height:1.1em;background:var(--a);vertical-align:-3px;margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.label{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.asks{display:flex;flex-wrap:wrap;gap:8px}
+.asks button{font:14px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.asks button:hover{border-color:var(--a);color:var(--a)}
+footer{font-size:12px;line-height:1.5;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+.replay{display:none;font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.js .replay{display:inline}
+/* Intro: greeting and composer centred, the thread waits */
+.play main{justify-content:center}
+.play .hello{display:block}
+.play .thread,.play .ask-more,.play footer{display:none}
+.play .composer{display:flex;position:static}
+.typing .field{display:block}
+.typing .ask-more{display:none}
+@media (max-width:480px){.composer{position:static}}
+@media (prefers-reduced-motion:reduce){.w{opacity:1;transition:none}.caret,.dots i{animation:none}}
+</style>
+</head>
+<body>
+<main>
+  <p class="hello" id="hello" aria-hidden="true">Hello</p>
 
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
-    </head>
-    <body class="">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-md-9">
-                    <h1>Hello</h1>
+  <div class="thread" id="thread">
+    <section class="turn" id="who" aria-labelledby="who-q">
+      <h1 class="q" id="who-q">Who is Moz Morris Ltd?</h1>
+      <div class="status" id="status">Checked Companies House</div>
+      <div class="a" id="answer">
+        <p>Moz Morris Ltd is a software development company based in London, founded by Moz Morris in May 2014. <a class="chip" href="https://find-and-update.company-information.service.gov.uk/company/09049340">Companies House</a></p>
+        <p>Moz is currently a developer at <a href="https://weareadaptive.com/">Adaptive</a> and CTO at <a href="https://signalforge.uk/">SignalForge</a>.</p>
+        <p>For work enquiries, email <a href="mailto:work@mozmorris.co.uk">work@mozmorris.co.uk</a>. Moz is also on <a href="https://www.linkedin.com/in/mozmorris">LinkedIn</a> and <a href="https://github.com/MozMorris">GitHub</a>.</p>
+      </div>
+    </section>
 
-                    <p>
-                        I am Moz Morris.
-                    </p>
+    <section class="turn" id="signalforge" data-followup aria-labelledby="signalforge-q">
+      <h2 class="q" id="signalforge-q">What does SignalForge do?</h2>
+      <div class="a">
+        <p>SignalForge designs and builds AI-native go-to-market systems for SaaS and tech companies, inside each client's own infrastructure. Moz is its CTO. <a class="chip" href="https://signalforge.uk/">signalforge.uk</a></p>
+      </div>
+    </section>
 
-                    <p>
-                        I'm a full stack web developer. I develop web sites &amp; apps.
-                    </p>
+    <section class="turn" id="adaptive" data-followup aria-labelledby="adaptive-q">
+      <h2 class="q" id="adaptive-q">What does Adaptive do?</h2>
+      <div class="a">
+        <p>Adaptive builds custom trading technology for investment banks, fintechs and capital markets firms. Moz works there as a developer. <a class="chip" href="https://weareadaptive.com/">weareadaptive.com</a></p>
+      </div>
+    </section>
 
-                    <p>
-                        I take a design,
-                        turn it into something useful,
-                        then deploy it to the web.
-                    </p>
+    <section class="turn" id="registered" data-followup aria-labelledby="registered-q">
+      <h2 class="q" id="registered-q">Where is the company registered?</h2>
+      <div class="a">
+        <p>Moz Morris Ltd is registered in England and Wales, company number 09049340. Its registered office is 59 Bath Street, Southampton, SO14 6GR. <a class="chip" href="https://find-and-update.company-information.service.gov.uk/company/09049340">Companies House</a></p>
+      </div>
+    </section>
 
-                    <p>
-                        Sometimes I <a href="http://www.mozmorris.com/">write about it</a>.
-                    </p>
+    <section class="turn" id="contact" data-followup aria-labelledby="contact-q">
+      <h2 class="q" id="contact-q">How do I get in touch?</h2>
+      <div class="a">
+        <p>For work enquiries, email <a href="mailto:work@mozmorris.co.uk">work@mozmorris.co.uk</a>.</p>
+      </div>
+    </section>
+  </div>
 
-                    <p>
-                        I work with digital agencies and businesses to build great stuff.
-                    </p>
+  <div class="composer" id="composer">
+    <div class="field" aria-hidden="true"><span class="ph" id="ph">Ask about Moz Morris Ltd</span><span id="typed"></span><span class="caret"></span></div>
+    <div class="ask-more" id="askMore">
+      <div class="label" id="askLabel">Ask another question</div>
+      <div class="asks" id="asks" role="group" aria-labelledby="askLabel"></div>
+    </div>
+  </div>
 
-                    <p>
-                        I'd love to help you too, so <a href="mailto:moz@earthview.co.uk">email me</a>.
-                    </p>
-                </div>
-            </div>
+  <footer>
+    <span>Moz Morris Ltd. Registered in England and Wales, company 09049340. Registered office: 59 Bath Street, Southampton, SO14 6GR.</span>
+    <button type="button" class="replay" id="replay">Replay</button>
+  </footer>
+</main>
 
-            <div class="row">
-                <div class="col-xs-12 col-md-9">
-                    <h2>Great Stuff</h2>
+<script>
+(function () {
+  var root = document.documentElement;
+  var $ = function (id) { return document.getElementById(id); };
+  var thread = $('thread'), asks = $('asks'), askMore = $('askMore');
+  var answer = $('answer'), status = $('status'), typed = $('typed'), ph = $('ph');
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var followups = Array.prototype.slice.call(document.querySelectorAll('[data-followup]'));
+  var originals = new Map([[answer, answer.innerHTML]]);
+  followups.forEach(function (f) { var a = f.querySelector('.a'); originals.set(a, a.innerHTML); });
+  var run = 0;
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var dots = '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>';
 
-                    <p>
-                        <a href="http://www.socialyou.co.uk/">socialyou.co.uk</a> <small>May&nbsp;2015</small>
-                    </p>
+  root.classList.add('js');
+  if (still) $('replay').hidden = true;
 
-                    <p>
-                        <a href="http://www.ordnancesurvey.co.uk/mapzone/">Mapzone</a> <small>Feb&nbsp;2015</small>
-                    </p>
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var now = new Date(), day = now.getDay(), hour = now.getHours();
+  $('hello').textContent = day === 5 || day === 6 || day === 0 ? 'Happy ' + days[day]
+    : hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
 
-                    <p>
-                        <a href="http://www.headstream.com">headstream.com</a> <small>Sep&nbsp;2014</small>
-                    </p>
+  // Wrap each word (and each chip, whole) in a span so an answer can stream in.
+  function prepare(el) {
+    var units = [];
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var s = document.createElement('span');
+            s.className = 'w'; s.textContent = part;
+            frag.appendChild(s); units.push(s);
+          });
+          child.parentNode.replaceChild(frag, child);
+        } else if (child.classList && child.classList.contains('chip')) {
+          child.classList.add('w'); units.push(child);
+        } else if (child.nodeType === 1) walk(child);
+      });
+    })(el);
+    return units;
+  }
 
-                    <p>
-                        <a href="http://www.bon-voyage.co.uk">bon-voyage.co.uk</a> <small>May&nbsp;2014</small>
-                    </p>
+  function stream(units, id) {
+    return units.reduce(function (p, u) {
+      return p.then(function () { if (id === run) { u.classList.add('on'); return wait(26); } });
+    }, Promise.resolve());
+  }
 
-                    <p>
-                        <a href="http://www.breastcancercampaign.org/findthecures/">Breast Cancer Campaign</a> <small>Nov&nbsp;2013</small>
-                    </p>
+  function reset() {
+    originals.forEach(function (html, el) { el.innerHTML = html; });
+    status.textContent = 'Checked Companies House';
+    asks.innerHTML = '';
+    followups.forEach(function (f) {
+      Array.prototype.forEach.call(f.querySelectorAll('.status'), function (st) { st.remove(); });
+      f.hidden = true;
+      thread.appendChild(f);
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = f.querySelector('.q').textContent;
+      b.addEventListener('click', function () { ask(f, b); });
+      asks.appendChild(b);
+    });
+    askMore.hidden = false;
+  }
 
-                    <p>
-                        <a href="http://www.clipper-teas.com/">clipper-teas.com</a> <small>Jun&nbsp;2013</small>
-                    </p>
-                </div>
-            </div>
+  function ask(f, button) {
+    var id = run;
+    button.remove();
+    if (!asks.children.length) askMore.hidden = true;
+    thread.appendChild(f);
+    f.hidden = false;
+    f.scrollIntoView({ block: 'start', behavior: still ? 'auto' : 'smooth' });
+    if (still) return;
+    var st = document.createElement('div');
+    st.className = 'status'; st.innerHTML = dots + 'Thinking';
+    f.insertBefore(st, f.querySelector('.a'));
+    var units = prepare(f.querySelector('.a'));
+    wait(600).then(function () {
+      st.remove();
+      return stream(units, id);
+    });
+  }
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <h2>Clients</h2>
-                </div>
-            </div>
+  function type(text, id) {
+    return text.split('').reduce(function (p, ch) {
+      return p.then(function () { if (id === run) { typed.textContent += ch; return wait(55 + Math.random() * 45); } });
+    }, Promise.resolve());
+  }
 
-            <div class="row clients">
-                <div class="col-sm-4">
-                    <p>
-                        <a href="https://www.bon-voyage.co.uk/">Bon Voyage</a>
-                    </p>
+  function play() {
+    var id = ++run;
+    reset();
+    typed.textContent = ''; ph.hidden = false;
+    root.classList.add('play', 'typing');
+    window.scrollTo(0, 0);
+    var units;
+    return wait(900)
+      .then(function () { if (id !== run) throw 0; ph.hidden = true; return type('Who is Moz Morris Ltd?', id); })
+      .then(function () { return wait(450); })
+      .then(function () {
+        if (id !== run) throw 0;
+        units = prepare(answer);
+        status.innerHTML = dots + 'Checking Companies House';
+        typed.textContent = ''; ph.hidden = false;
+        root.classList.remove('play');
+        return wait(1000);
+      })
+      .then(function () { if (id !== run) throw 0; status.textContent = 'Checked Companies House'; return stream(units, id); })
+      .then(function () {
+        if (id !== run) return;
+        root.classList.remove('typing');
+        try { localStorage.setItem('mm-seen', '1'); } catch (e) {}
+      })
+      .catch(function (e) { if (e !== 0) finish(); });
+  }
 
-                    <p>
-                        <a href="http://www.clockworxdesign.com/">Clockworx</a>
-                    </p>
+  // Any failure lands on the finished page rather than a half-played intro.
+  function finish() { run++; reset(); root.classList.remove('play', 'typing'); }
 
-                    <p>
-                        <a href="http://www.fivebyfiveuk.com/">Five by Five</a>
-                    </p>
-
-                    <p>
-                        <a href="http://www.fivebyfiveuk.com/">Headstream</a>
-                    </p>
-                </div>
-
-                <div class="col-sm-4 col-sm-offset-1">
-                    <p>
-                        <a href="https://www.parcelmonkey.co.uk/">Parcel Monkey</a>
-                    </p>
-
-                    <p>
-                        <a href="http://www.sideshowagency.com/">Sideshow</a>
-                    </p>
-
-                    <p>
-                        <a href="http://www.socialyou.co.uk/">Social You</a>
-                    </p>
-
-                    <p>
-                        <a href="http://www.strawberrysoup.co.uk/">Strawberry Soup</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-md-9">
-                    <h2>Contact</h2>
-
-                    <p>
-                        <a href="mailto:moz@earthview.co.uk">moz@earthview.co.uk</a>
-                    </p>
-
-                    <p>
-                        <a href="tel:+447773575846">07773 575 846</a>
-                    </p>
-
-                    <p>
-                        <a href="https://github.com/MozMorris">GitHub</a>
-                    </p>
-
-                    <p>
-                        <a href="https://twitter.com/MozMorris">Twitter</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <script type="text/javascript">
-            WebFontConfig = {
-                google: { families: [ 'Roboto+Slab:400:latin' ] }
-            };
-
-            (function() {
-                var wf = document.createElement('script');
-                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                  '://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js'
-                wf.type = 'text/javascript';
-                wf.async = 'true';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(wf, s);
-            })();
-        </script>
-
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src=('https:' == document.location.protocol ? 'https' : 'http') + '://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-25645110-1');ga('send','pageview');
-        </script>
+  $('replay').addEventListener('click', play);
+  try {
+    if (!root.classList.contains('play')) reset();
+    else if (!document.hidden) play();
+    else {
+      // Opened in a background tab: timers crawl there, so hold the intro until the visitor looks.
+      reset();
+      document.addEventListener('visibilitychange', function start() {
+        if (document.hidden) return;
+        document.removeEventListener('visibilitychange', start);
+        play();
+      });
+    }
+  } catch (e) { finish(); }
+})();
+</script>
 </body>
 </html>
