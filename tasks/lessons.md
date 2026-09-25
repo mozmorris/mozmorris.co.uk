@@ -29,3 +29,11 @@ Every entry here was observed in this repo unless marked otherwise. Short impera
 - **Back up before `--delete`.** `ssh miab-new 'sudo -n tar -C /home/user-data/www -czf - default' > <scratchpad>/rollback/...tgz` took the whole 2020 web root (92 KB) in one command. Roll back by piping it into `sudo tar -xzf - -C /home/user-data/www` after clearing `default/`.
 - **The deploy changed file groups from `staff` to `user-data`** (the 2020 files carried the Mac's group). nginx still serves them; `--chown=user-data:user-data` keeps them consistent from now on.
 - **Proof of a deploy:** `sha256sum` on the server, `curl -s https://mozmorris.co.uk/ | shasum -a 256` locally, and the `last-modified` header. All three matched on 25 Sep 2026 (`a642ffa6...`).
+
+## Process (25 Sep 2026 session: brief to live page)
+
+- **Screenshots without explanation carry the brief.** Moz's three Claude screenshots meant "make the visitor feel they are asking an assistant". Read them as intent, state the reading back, and confirm before designing (it was confirmed as D4, then sharpened into D5).
+- **Separate the idea from the brand.** A page that looks like Claude would present the company's own copy as an independent AI's verdict and borrow Anthropic's marks. The choreography (greeting, typed question, status line, streamed answer) carries the feeling on its own. Say so plainly and ship the alternative.
+- **Never invent claims in page copy.** A draft follow-up said "Moz reads everything that arrives there"; nobody said that, and it was cut before publishing. Every sentence on the page must trace to Moz, Companies House, or the linked company's own site.
+- **Check the legal floor for a Ltd website.** The 2015 trading disclosures regulations require registered name, number, place of registration and registered office on the site. The old todo called the office "optional"; it is not. The footer carries all four.
+- **Budget fonts early.** The 100 KB page budget in the brief caught Newsreader at 132 KB before it shipped.

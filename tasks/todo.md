@@ -26,3 +26,12 @@ Updated 25 Sep 2026. Owner tags: [Moz] = decisions or access only you have · [M
 - [x] **[Moz+agent] Verify** (25 Sep 2026: deployed; live sha256 matches `app/index.html`, `last-modified: Fri, 25 Sep 2026 11:24:37 GMT`): view at phone and desktop widths, check HTML validity, then deploy to `miab-new:/home/user-data/www/default/` and confirm with `curl -sI` that `last-modified` has moved past 19 Oct 2020.
 - [x] **[agent] Open Graph image** (25 Sep 2026: `app/og.png`, source `docs/og-image.html`) (1200x630, the question and first answer line in the page style) so shared links preview properly; the brief asks for one and the page has none yet.
 - [x] **[Moz] Review and merge `new-page`**, then deploy (merged and deployed 25 Sep 2026).
+
+## Review (25 Sep 2026)
+
+Brief to live page in one session. `docs/design-brief.md` approved; accent picked from mockups; prototype approved; page built with no build step (D6); old toolchain removed; Open Graph image added; deployed with `deploy.sh` and verified by sha256, `last-modified` and a live browser check; pushed to GitHub (`fd6f900`). Nothing in this list is open.
+
+## 3. Optional, when wanted
+
+- [ ] **[Moz] nginx polish** (`debt.md`): serve `404.html` for missing paths and `font/woff2` for fonts. Needs Mail-in-a-Box nginx config, outside rule 2, so only on Moz's say-so.
+- [ ] **[Moz] Copy updates** as roles change: edit `app/index.html` (answer, follow-ups, JSON-LD, meta description), regenerate `app/og.png` if the first answer line changes, then `./deploy.sh` and `./deploy.sh --live`.
