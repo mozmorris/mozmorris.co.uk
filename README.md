@@ -1,10 +1,9 @@
 ## Source for mozmorris.co.uk
 
-### Development
+The single page for Moz Morris Ltd. Plain HTML, CSS and JavaScript in `app/`, with no build step. See `docs/design-brief.md` for the design and `CLAUDE.md` for how the site is hosted.
 
-    $ npm install && bower install
-    $ npm run watch
+### Preview
 
-### Build
+    $ python3 -m http.server --directory app 8000
 
-    $ npm run build
+Then open http://localhost:8000.

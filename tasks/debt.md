@@ -1,11 +1,9 @@
 # Debt: mozmorris.co.uk
 
-Opened 25 Sep 2026. Items here are known, accepted for now, and dated; move one to `todo.md` when it gets an owner and a date. Most of this list disappears with the rebuild (D3 in `decisions.md`).
+Items here are known, accepted for now, and dated; move one to `todo.md` when it gets an owner and a date. The old toolchain debt (gulp 3, bower, Ruby Sass, jQuery/Bootstrap/Modernizr, placeholder tests, scaffold config, Dependabot alerts) was cleared on 25 Sep 2026 with D6.
 
-- **Broken build toolchain.** gulp 3 fails on Node 22; Ruby Sass, gulp and bower are not installed. The site cannot be rebuilt from source today (`lessons.md`).
-- **Deprecated front-end dependencies.** jQuery 1.11, Bootstrap Sass 3.1 and Modernizr 2.6 via bower. The page uses the Bootstrap grid only; `main.js` is empty.
-- **Placeholder test suite.** `test/` is the Yeoman Mocha scaffold with its own `bower.json`; it tests nothing.
-- **Stale page content.** Copy dates from 2014 to 2020 ("Web Developer", project links) and does not describe Moz Morris Ltd. `<meta name="description">` is empty.
-- **36 Dependabot alerts on `master`** (2 critical, 16 high, 15 moderate, 3 low, as of 25 Sep 2026), all in the build toolchain, none in the served static files. Dependabot may open new PRs until the toolchain is removed; close them the same way.
-- **No scripted deploy.** The site lives in `/home/user-data/www/default/` on the Mail-in-a-Box (`miab-new`), last updated 19 Oct 2020 by a manual copy from the Mac. There is no deploy script, and the exact upload command (sudo, ownership) is unproven.
-- **Leftover scaffold config.** `.bowerrc`, `.yo-rc.json`, `.jshintrc`.
+- **Live site is still the 2014 page** until `new-page` is merged and deployed. Its copy dates from 2014 to 2020 and its meta description is empty.
+- **No scripted deploy.** The site lives in `/home/user-data/www/default/` on the Mail-in-a-Box (`miab-new`), last updated 19 Oct 2020 by a manual copy from the Mac. The exact upload command (sudo, ownership) is unproven.
+- **No Open Graph image** (25 Sep 2026). Shared links show title and description only.
+- **Subset fonts under the OFL** (25 Sep 2026). Newsreader and IBM Plex Sans were instanced and subset for the web. Both are SIL Open Font License. Subsetting counts as modifying under the OFL, and whether a modified font may keep a Reserved Font Name (IBM Plex reserves "Plex") is a grey area; web subsets like Google Fonts' own commonly keep the names. Not checked against each font's licence file. Add the licence texts to `app/fonts/` and rename the families in `@font-face` if this ever matters.
+- **Stale live leftovers.** The live web root still holds the 2020 `fonts/` and `styles/` directories; clear them on the first deploy of the new page.

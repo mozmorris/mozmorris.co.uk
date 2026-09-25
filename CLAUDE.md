@@ -1,14 +1,14 @@
 # mozmorris.co.uk: project instructions
 
-This repo is the source for **mozmorris.co.uk**, the single-page site for **Moz Morris Ltd** (company 09049340, incorporated 21 May 2014, SIC 62012 business and domestic software development). The current page is a 2014 Yeoman/gulp build last deployed 19 Oct 2020. The next piece of work is a new single page that reflects the business.
+This repo is the source for **mozmorris.co.uk**, the single-page site for **Moz Morris Ltd** (company 09049340, incorporated 21 May 2014, SIC 62012 business and domestic software development). The live page is still the 2014 Yeoman/gulp build last deployed 19 Oct 2020. Its replacement (the question-and-answer page in `docs/design-brief.md`) is plain files in `app/` with no build step (D3).
 
 `tasks/lessons.md` is THIS project's verified lesson file (read at session start; append when a lesson is earned). `tasks/todo.md` tracks next steps. `tasks/decisions.md` records choices and why. `tasks/debt.md` holds known, accepted debt.
 
 ## Hard rules
 
-1. **The build is broken on modern Node.** `npm run build` fails on Node 22 with `ReferenceError: primordials is not defined` (gulp 3 via `vinyl-fs` → old `graceful-fs`). Verified 25 Sep 2026. Do not "fix" it by pinning an ancient Node or patching `graceful-fs`; the toolchain is being replaced (see `tasks/decisions.md`). Never claim a change is built or deployed without showing the output.
-2. **The live site is served by the Mail-in-a-Box server, not GitHub Pages.** `mozmorris.co.uk` resolves to 18.134.77.81, the Elastic IP of Moz's Mail-in-a-Box (v76, SSH alias `miab-new`; see `../mailinabox/`). Its nginx serves `/home/user-data/www/default/`, whose `index.html` is byte-identical to the live page (sha256 match, 25 Sep 2026). Deploying means copying the built files into that directory. That box is PRODUCTION MAIL AND DNS for mozmorris.co.uk and earthview.co.uk: touch only `/home/user-data/www/default/`, never install anything there, and never use the `miab-old-DEAD-do-not-use` SSH alias (it points at the same live IP with the old key). A push to `master` changes nothing live; GitHub Pages was disabled on 25 Sep 2026; do not re-enable it.
-3. **`dist/` is a build artifact.** Gitignored since the "Delete dist" commit; never commit it. `app/CNAME` is copied into `dist/` by the `extras` task.
+1. **There is no build step (D3, 25 Sep 2026).** `app/` is the site exactly as served. Do not add a bundler, preprocessor or npm toolchain without a new decision in `tasks/decisions.md`. Never claim a change is deployed without showing the output.
+2. **The live site is served by the Mail-in-a-Box server, not GitHub Pages.** `mozmorris.co.uk` resolves to 18.134.77.81, the Elastic IP of Moz's Mail-in-a-Box (v76, SSH alias `miab-new`; see `../mailinabox/`). Its nginx serves `/home/user-data/www/default/`, whose `index.html` is byte-identical to the live page (sha256 match, 25 Sep 2026). Deploying means copying the contents of `app/` into that directory. That box is PRODUCTION MAIL AND DNS for mozmorris.co.uk and earthview.co.uk: touch only `/home/user-data/www/default/`, never install anything there, and never use the `miab-old-DEAD-do-not-use` SSH alias (it points at the same live IP with the old key). A push to `master` changes nothing live; GitHub Pages was disabled on 25 Sep 2026; do not re-enable it.
+3. **`app/` is what gets deployed, all of it.** Keep anything that should not be public out of `app/`. `app/CNAME` is a leftover from GitHub Pages and harmless on nginx.
 4. **Temporary scripts and scratch builds go in the session scratchpad, not the tree.** `git status` before any `git add -A`. No secrets, ever.
 5. **Work on a branch, not `master`.**
 6. **Business facts come from Companies House, not memory.** Company name, number, registered office and SIC code are public record at https://find-and-update.company-information.service.gov.uk/company/09049340. Re-read it before putting any of them on the page.
@@ -22,28 +22,23 @@ This repo is the source for **mozmorris.co.uk**, the single-page site for **Moz 
 ## Structure
 
 ```
-app/index.html          the page (Bootstrap 3 grid, content inline)
-app/styles/main.scss    styles; compiled by Ruby Sass (end-of-life)
-app/scripts/main.js     empty
-app/CNAME, .htaccess, 404.html, robots.txt, favicon.ico
-bower.json              jQuery 1.11, Bootstrap Sass 3.1, Modernizr 2.6
-gulpfile.js             gulp 3 pipeline: styles → uncss → useref/minify → dist/
-test/                   Yeoman Mocha placeholder; tests nothing
+app/index.html          the page: HTML, inline CSS and JS, JSON-LD
+app/404.html            not-found page in the same style
+app/fonts/              Newsreader and IBM Plex Sans, self-hosted woff2, trimmed to the weights used
+app/CNAME, robots.txt, favicon.ico
+docs/design-brief.md    the approved design brief
 ```
 
-The `build` script is `gulp && gulp critical`: the second step inlines critical CSS into `dist/index.html` (the live page carries it inline).
+The page plays a one-time intro (question types in, answer streams). The finished state is in the HTML, so it reads correctly with JS off, under `prefers-reduced-motion`, and to crawlers. `localStorage` key `mm-seen` skips the intro on return visits; clear it to see the intro again.
 
 ## Testing
 
-There are no real tests. Check a change by building it and viewing the output in a browser at phone and desktop widths. Until the toolchain is replaced, the only reliable check is viewing `app/index.html` directly (unstyled, since the Sass is not compiled).
+There are no automated tests. Check a change by serving `app/` and viewing it in a browser at phone (390px) and desktop widths, in dark and light modes, with the intro both playing and skipped. Validate with `npx html-validate` (only the lowercase-doctype style rule fires). Timers crawl in a hidden browser tab, so an automated check of the intro in a background tab runs about 20 times slower than real.
 
 ## Commands
 
 ```bash
-npm install          # works on Node 22 (1400 packages, deprecation warnings)
-npm run build        # BROKEN on Node 22: primordials is not defined
-npm run watch        # BROKEN: same gulp 3 failure
-bower install        # bower is not installed; bower itself is deprecated
+python3 -m http.server --directory app 8000   # preview at http://localhost:8000
 
 # Inspect the live web root (read-only, safe)
 ssh miab-new 'ls -la /home/user-data/www/default/'
